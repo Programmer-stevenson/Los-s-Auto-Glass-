@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FiPhone, FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
@@ -12,16 +13,30 @@ const Navbar = () => {
   const pathname = usePathname();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  const toggleMenu = useCallback(() => setIsOpen(prev => !prev), []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -34,27 +49,28 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
           <Link href="/" className="flex items-center">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center">
-              {<img src="/logo.png" alt="Los's Auto Glass" className="h-28 w-auto" />}
+            <div className="flex items-center">
+              <Image
+                src="/hero2.png"
+                alt="Los's Auto Glass"
+                width={75}
+                height={75}
+                className="h-[75px] w-auto"
+                priority
+              />
               <span className="text-2xl font-bold">
                 <span className={scrolled ? 'text-brand-blue' : 'text-white'}>Los&apos;s</span>
                 <span className={scrolled ? 'text-brand-black' : 'text-brand-blue'}> Auto Glass</span>
               </span>
-            </motion.div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -82,65 +98,63 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Phone Number */}
+          {/* Phone Number - Desktop */}
           <div className="hidden md:flex items-center">
-            <motion.a
-              href="tel:3854246781"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 bg-gradient-to-r from-brand-blue to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            <a
+              href="tel:3854431606"
+              className="flex items-center space-x-2 bg-gradient-to-r from-brand-blue to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <FiPhone className="text-lg" />
-              <span>(385) 424-6781</span>
-            </motion.a>
+              <span>(385) 443-1606</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-2xl text-brand-blue"
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-2xl p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
-            {isOpen ? <FiX /> : <FiMenu />}
-          </motion.button>
+            {isOpen ? (
+              <FiX className={scrolled ? 'text-brand-blue' : 'text-white'} />
+            ) : (
+              <FiMenu className={scrolled ? 'text-brand-blue' : 'text-white'} />
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-200"
+      {/* Mobile Menu — CSS transition instead of AnimatePresence */}
+      <div
+        className={`md:hidden bg-white border-t border-gray-200 overflow-hidden transition-all duration-200 ease-out ${
+          isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-4 py-6 space-y-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`block text-lg font-medium transition-colors py-2 ${
+                pathname === link.path
+                  ? 'text-brand-blue'
+                  : 'text-brand-grey hover:text-brand-blue'
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <a
+            href="tel:3854431606"
+            className="flex items-center justify-center space-x-2 bg-gradient-to-r from-brand-blue to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg mt-4"
           >
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  className={`block text-lg font-medium transition-colors ${
-                    pathname === link.path
-                      ? 'text-brand-blue'
-                      : 'text-brand-grey hover:text-brand-blue'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <a
-                href="tel:3854246781"
-                className="flex items-center justify-center space-x-2 bg-gradient-to-r from-brand-blue to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg mt-4"
-              >
-                <FiPhone />
-                <span>(385) 424-6781</span>
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            <FiPhone />
+            <span>(385) 443-1606</span>
+          </a>
+        </div>
+      </div>
+    </nav>
   );
 };
 

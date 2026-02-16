@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: "Los's Auto Glass | Auto Glass Without The Lag-time",
-  description: 'Fast, reliable, and affordable auto glass replacement and repair services in Utah. Call (385) 424-6781',
+  description: 'Fast, reliable, and affordable auto glass replacement and repair services in Utah. Call (385) 443-1606',
 };
 
 export default function RootLayout({

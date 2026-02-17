@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiCheck, FiShield, FiClock, FiTool, FiPhone } from 'react-icons/fi';
+import { FiCheck, FiShield, FiClock, FiTool, FiPhone, FiDollarSign } from 'react-icons/fi';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FadeIn from '@/components/FadeIn';
@@ -84,7 +84,7 @@ const Home = () => {
                 <div className="relative rounded-3xl overflow-hidden w-full max-w-md shadow-2xl">
                   <div className="aspect-[4/3] relative">
                     <Image 
-                      src="/hero2.png"
+                      src="/hero.png_mobile.webp"
                       alt="Los's Auto Glass - Professional Auto Glass Services"
                       fill
                       className="object-contain"
@@ -107,7 +107,7 @@ const Home = () => {
                 </Link>
                 <a
                   href="tel:3854431606"
-                  className="w-full sm:w-auto px-8 py-4 bg-white/10 text-black rounded-full font-bold text-lg border-2 border-black/30 hover:bg-white/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 bg-white/10 text-white rounded-full font-bold text-lg border-2 border-white/30 hover:bg-white/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <FiPhone />
                   <span>(385) 443-1606</span>
@@ -151,7 +151,7 @@ const Home = () => {
                     </div>
                     <div>
                       <p className="text-brand-black font-bold text-base">500+</p>
-                      <p className="text-brand-grey font-bold text-xs">Satisfied Customers</p>
+                      <p className="text-brand-grey font-bold text-xs">Happy Customers</p>
                     </div>
                   </div>
                 </FadeIn>
@@ -244,6 +244,14 @@ const Home = () => {
       </section>
 
       <Footer />
+
+      {/* Floating Financing Banner */}
+      <Link href="/finance" className="fixed left-4 bottom-4 z-50 group">
+        <div className="bg-gradient-to-r from-brand-blue to-blue-600 text-white px-4 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98] flex items-center gap-2 text-sm font-semibold max-w-[220px]">
+          <FiDollarSign className="text-lg flex-shrink-0" />
+          <span>Financing Available Through PayPal For All Services</span>
+        </div>
+      </Link>
     </div>
   );
 };

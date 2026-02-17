@@ -138,7 +138,7 @@ const Services = () => {
               <div className="lg:hidden flex justify-center mb-10">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-sm">
                   <Image 
-                    src="/porshe.png"
+                    src="/los.jpg"
                     alt="Expert technician performing windshield replacement"
                     width={500}
                     height={625}
@@ -169,7 +169,7 @@ const Services = () => {
             <FadeIn onMount delay={0.2} x={50} y={0} className="relative hidden lg:flex order-1 lg:order-2 justify-center">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-md lg:max-w-lg">
                 <Image 
-                  src="/porshe.png"
+                  src="/los.jpg"
                   alt="Expert technician performing windshield replacement"
                   width={500}
                   height={625}

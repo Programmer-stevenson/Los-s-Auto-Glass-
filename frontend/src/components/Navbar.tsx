@@ -68,7 +68,7 @@ const Navbar = () => {
               />
               <span className="text-2xl font-bold">
                 <span className={scrolled ? 'text-brand-blue' : 'text-white'}>Los&apos;s</span>
-                <span className={scrolled ? 'text-brand-black' : 'text-brand-blue'}> Auto Glass</span>
+                <span className={scrolled ? 'text-brand-black' : 'text-brand-black'}> Auto Glass</span>
               </span>
             </div>
           </Link>

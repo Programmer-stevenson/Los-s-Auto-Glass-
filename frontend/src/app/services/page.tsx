@@ -105,7 +105,7 @@ const Services = () => {
             
             {/* Left Column */}
             <FadeIn onMount className="order-2 lg:order-1">
-              <span className="inline-block px-4 py-2 bg-brand-blue/20 border border-brand-blue/30 rounded-full text-brand-blue text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-2 bg-brand-blue/20 border border-brand-black/30 rounded-full text-brand-black text-sm font-medium mb-6">
                 Professional Auto Glass Services
               </span>
 
@@ -118,7 +118,7 @@ const Services = () => {
               </h1>
 
               <p 
-                className="text-xl md:text-2xl text-gray-300 mb-8 max-w-xl"
+                className="text-xl md:text-2xl text-black-300 mb-8 max-w-xl"
                 style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
               >
                 Expert windshield repair & replacement with mobile service available. We come to you!
@@ -129,9 +129,24 @@ const Services = () => {
                 {['Same-Day Service', 'Mobile Repairs', 'Insurance Claims Accepted', 'Lifetime Warranty'].map((item, index) => (
                   <FadeIn key={index} onMount delay={0.4 + index * 0.1} x={-20} y={0} className="flex items-center space-x-3">
                     <FiCheck className="text-brand-light-green text-xl" />
-                    <span className="text-gray-300 text-lg">{item}</span>
+                    <span className="text-black-300 text-lg">{item}</span>
                   </FadeIn>
                 ))}
+              </div>
+
+              {/* Mobile Image - between highlights and buttons */}
+              <div className="lg:hidden flex justify-center mb-10">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-sm">
+                  <Image 
+                    src="/porshe.png"
+                    alt="Expert technician performing windshield replacement"
+                    width={500}
+                    height={625}
+                    className="w-full h-auto object-contain"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/30 via-transparent to-brand-black/30" />
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-6">
@@ -150,15 +165,15 @@ const Services = () => {
               </div>
             </FadeIn>
 
-            {/* Right Column - Image */}
-            <FadeIn onMount delay={0.2} x={50} y={0} className="relative order-1 lg:order-2 flex justify-center">
+            {/* Right Column - Image (Desktop Only) */}
+            <FadeIn onMount delay={0.2} x={50} y={0} className="relative hidden lg:flex order-1 lg:order-2 justify-center">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-md lg:max-w-lg">
                 <Image 
-                  src="/mobile_optimized.webp"
+                  src="/porshe.png"
                   alt="Expert technician performing windshield replacement"
                   width={500}
                   height={625}
-                  className="w-full aspect-[4/5] object-cover"
+                  className="w-full h-auto object-contain"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/30 via-transparent to-brand-black/30" />

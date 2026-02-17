@@ -16,8 +16,33 @@ router.get('/config', (req: Request, res: Response) => {
 // Create PayPal order
 router.post('/create-order', optionalAuth, async (req: Request, res: Response) => {
   try {
-    const { bookingId, bookingNumber } = req.body;
+    const { bookingId, bookingNumber, amount, description } = req.body;
 
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+    // Direct payment (from Finance page - no booking required)
+    if (amount && !bookingId && !bookingNumber) {
+      const parsedAmount = parseFloat(amount);
+      if (!parsedAmount || parsedAmount < 1) {
+        return res.status(400).json({ error: 'Invalid amount' });
+      }
+
+      const refId = `PAY-${Date.now()}`;
+      const order = await paypalService.createOrder({
+        amount: parsedAmount,
+        bookingNumber: refId,
+        description: description || `Payment - ${refId}`,
+        returnUrl: `${frontendUrl}/finance?success=true`,
+        cancelUrl: `${frontendUrl}/finance`
+      });
+
+      return res.json({
+        orderId: order.orderId,
+        approvalUrl: order.approvalUrl
+      });
+    }
+
+    // Booking-based payment
     let booking;
     if (bookingId) {
       booking = await Booking.findById(bookingId);
@@ -32,8 +57,6 @@ router.post('/create-order', optionalAuth, async (req: Request, res: Response) =
     if (booking.payment.status === 'paid') {
       return res.status(400).json({ error: 'Booking already paid' });
     }
-
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 
     const order = await paypalService.createOrder({
       amount: booking.payment.totalAmount,
@@ -71,36 +94,34 @@ router.post('/capture-order', optionalAuth, async (req: Request, res: Response) 
       return res.status(400).json({ error: 'Order ID required' });
     }
 
-    const booking = await Booking.findOne({ bookingNumber });
-    if (!booking) {
-      return res.status(404).json({ error: 'Booking not found' });
-    }
-
     const capture = await paypalService.captureOrder(orderId);
 
     if (capture.status === 'COMPLETED') {
-      booking.payment.status = 'paid';
-      booking.payment.paidAmount = capture.amount;
-      booking.status = 'confirmed';
-      
-      const transaction = booking.payment.transactions.find(
-        t => t.paypalOrderId === orderId
-      );
-      if (transaction) {
-        transaction.transactionId = capture.transactionId;
-        transaction.status = 'completed';
+      // If there's a booking associated, update it
+      if (bookingNumber) {
+        const booking = await Booking.findOne({ bookingNumber });
+        if (booking) {
+          booking.payment.status = 'paid';
+          booking.payment.paidAmount = capture.amount;
+          booking.status = 'confirmed';
+          
+          const transaction = booking.payment.transactions.find(
+            t => t.paypalOrderId === orderId
+          );
+          if (transaction) {
+            transaction.transactionId = capture.transactionId;
+            transaction.status = 'completed';
+          }
+          
+          await booking.save();
+        }
       }
-      
-      await booking.save();
 
       res.json({
         success: true,
         message: 'Payment successful',
-        booking: {
-          bookingNumber: booking.bookingNumber,
-          status: booking.status,
-          payment: booking.payment
-        }
+        transactionId: capture.transactionId,
+        amount: capture.amount
       });
     } else {
       res.status(400).json({ error: 'Payment not completed' });

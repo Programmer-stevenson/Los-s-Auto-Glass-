@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/slots/:date', async (req: Request, res: Response) => {
   try {
     const { date } = req.params;
-    const slots = await calendarService.getAvailableSlots(date);
+    const slots = await calendarService.getAvailableSlots(date as string);
     res.json({ date, slots, count: slots.length });
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch slots' });
@@ -55,7 +55,7 @@ router.get('/check', async (req: Request, res: Response) => {
 router.get('/bookings/:date', auth, staffOnly, async (req: Request, res: Response) => {
   try {
     const { date } = req.params;
-    const bookings = await calendarService.getBookingsForDate(date);
+    const bookings = await calendarService.getBookingsForDate(date as string);
     res.json({ date, bookings });
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch bookings' });

@@ -14,15 +14,18 @@
     "start:frontend": "cd frontend && npm start"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node-cron": "^3.0.11",
+    "@types/nodemailer": "^7.0.11",
+    "@types/uuid": "^10.0.0",
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/helmet": "^0.0.48",
-    "@types/morgan": "^1.9.10",
-    "@types/node": "^25.5.0",
-    "@types/node-cron": "^3.0.11",
-    "@types/nodemailer": "^7.0.11"
+    "@types/node": "^25.5.0"
   }
 }

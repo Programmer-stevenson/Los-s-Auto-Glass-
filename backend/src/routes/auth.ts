@@ -172,8 +172,7 @@ router.delete('/vehicles/:index', auth, async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const index = parseInt(req.params.index);
-    if (index < 0 || index >= user.vehicles.length) {
+const index = parseInt(req.params.index as string);    if (index < 0 || index >= user.vehicles.length) {
       return res.status(404).json({ error: 'Vehicle not found' });
     }
 

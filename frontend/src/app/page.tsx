@@ -151,7 +151,7 @@ const Home = () => {
                     </div>
                     <div>
                       <p className="text-brand-black font-bold text-base">500+</p>
-                      <p className="text-brand-grey font-bold text-xs">Happy Customers</p>
+                      <p className="text-brand-grey font-bold text-xs">Satisfied Customers</p>
                     </div>
                   </div>
                 </FadeIn>

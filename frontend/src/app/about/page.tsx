@@ -70,7 +70,7 @@ const About = () => {
             <FadeIn x={50} y={0}>
               <div className="rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '1 / 1.09' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/Carlos.jpg" alt="Carlos - Owner of Los's Auto Glass" className="w-full h-full object-cover" />
+                <img src="/salt-lake.jpg" alt="Carlos - Owner of Los's Auto Glass" className="w-full h-full object-cover" />
               </div>
             </FadeIn>
           </div>

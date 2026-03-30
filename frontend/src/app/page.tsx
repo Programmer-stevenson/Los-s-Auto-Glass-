@@ -107,8 +107,7 @@ const Home = () => {
                 </Link>
                 <a
                   href="tel:3854431606"
-                  className="w-full sm:w-auto px-8 py-4 bg-white/10 text-white rounded-full font-bold text-lg border-2 border-white/30 hover:bg-white/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
-                >
+className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-blue to-blue-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"                >
                   <FiPhone />
                   <span>(385) 443-1606</span>
                 </a>

@@ -7,6 +7,12 @@ import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const socialLinks = [
+    { icon: FaFacebook, href: '#' },
+    { icon: FaInstagram, href: '#' },
+    { icon: FaTwitter, href: '#' },
+  ];
+
   return (
     <footer className="bg-gradient-to-br from-brand-black via-brand-grey to-brand-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -20,19 +26,18 @@ const Footer = () => {
               Your trusted partner for professional auto glass services in Utah. Auto Glass Without The Lag-time.
             </p>
             <div className="flex space-x-4">
-              {[
-                { Icon: FaFacebook, href: '#' },
-                { Icon: FaInstagram, href: '#' },
-                { Icon: FaTwitter, href: '#' },
-              ].map(({ Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  className="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center hover:bg-brand-blue transition-colors duration-200"
-                >
-                  <Icon className="text-lg" />
-                </a>
-              ))}
+              {socialLinks.map((item, i) => {
+                const IconComponent = item.icon;
+                return (
+                  <a
+                    key={i}
+                    href={item.href}
+                    className="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center hover:bg-brand-blue transition-colors duration-200"
+                  >
+                    <IconComponent className="text-lg" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -57,10 +62,21 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-3">
-              <li className="text-gray-400">Windshield Replacement</li>
-              <li className="text-gray-400">Auto Glass Repair</li>
-              <li className="text-gray-400">Window Replacement</li>
-              <li className="text-gray-400">General Auto Repair</li>
+              {[
+                'Windshield Replacement',
+                'Auto Glass Repair',
+                'Window Replacement',
+                'General Auto Repair',
+              ].map((service) => (
+                <li key={service}>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-brand-blue transition-colors"
+                  >
+                    {service}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -94,7 +110,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p>© {currentYear} Los&apos;s Auto Glass. All rights reserved.</p>
+          <p>&copy; {currentYear} Los&apos;s Auto Glass. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+/*
 'use client';
 
 import Link from 'next/link';
@@ -11,7 +12,7 @@ export default function BookingPage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Hero */}
+      {/* Hero *​/}
       <section className="relative pt-32 pb-12 bg-gradient-to-br from-brand-blue via-blue-700 to-brand-black text-white overflow-hidden">
         <div className="absolute top-10 right-10 w-72 h-72 rounded-full bg-white/10 blur-3xl opacity-20 hidden md:block" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -22,7 +23,7 @@ export default function BookingPage() {
         </div>
       </section>
 
-      {/* Coming Soon Content */}
+      {/* Coming Soon Content *​/}
       <div className="max-w-4xl mx-auto px-4 py-16">
         <FadeIn delay={0.2} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-brand-blue to-blue-600 mb-6">
@@ -74,7 +75,7 @@ export default function BookingPage() {
           </div>
         </FadeIn>
 
-        {/* Why Choose Us Section */}
+        {/* Why Choose Us Section *​/}
         <FadeIn delay={0.4} className="mt-8 bg-gradient-to-br from-brand-blue to-blue-600 rounded-3xl p-8 md:p-10 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">Why Wait?</h3>
           <p className="text-gray-100 mb-6">
@@ -94,3 +95,4 @@ export default function BookingPage() {
     </div>
   );
 }
+*/

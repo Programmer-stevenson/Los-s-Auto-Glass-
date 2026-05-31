@@ -1,3 +1,4 @@
+/*
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -149,7 +150,7 @@ export default function FinancePage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Hero */}
+      {/* Hero *​/}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-brand-blue via-blue-700 to-brand-black text-white overflow-hidden">
         <div className="absolute top-10 right-10 w-72 h-72 rounded-full bg-white/10 blur-3xl opacity-20 hidden md:block" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -167,7 +168,7 @@ export default function FinancePage() {
 
       <div className="max-w-4xl mx-auto px-4 py-16">
 
-        {/* Receive Quote CTA */}
+        {/* Receive Quote CTA *​/}
         <FadeIn delay={0.1} className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6 md:p-8 mb-8 text-center">
           <h3 className="text-xl md:text-2xl font-bold text-brand-black mb-2">Don&apos;t have a quote yet?</h3>
           <p className="text-brand-grey mb-5">Get a free estimate before making a payment</p>
@@ -187,7 +188,7 @@ export default function FinancePage() {
           </div>
         </FadeIn>
 
-        {/* Payment Success */}
+        {/* Payment Success *​/}
         {paymentStatus === 'success' ? (
           <FadeIn onMount className="bg-white rounded-3xl p-8 md:p-12 shadow-xl text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 mb-6">
@@ -215,7 +216,7 @@ export default function FinancePage() {
           </FadeIn>
         ) : (
           <>
-            {/* Payment Form */}
+            {/* Payment Form *​/}
             <FadeIn delay={0.2} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-brand-blue to-blue-600 mb-4">
@@ -227,7 +228,7 @@ export default function FinancePage() {
                 </p>
               </div>
 
-              {/* Name Input */}
+              {/* Name Input *​/}
               <div className="max-w-md mx-auto mb-4">
                 <label htmlFor="name" className="block text-sm font-medium text-brand-black mb-2">
                   Your Name
@@ -242,7 +243,7 @@ export default function FinancePage() {
                 />
               </div>
 
-              {/* Amount Input */}
+              {/* Amount Input *​/}
               <div className="max-w-md mx-auto mb-6">
                 <label htmlFor="amount" className="block text-sm font-medium text-brand-black mb-2">
                   Payment Amount
@@ -265,10 +266,10 @@ export default function FinancePage() {
                 </div>
               </div>
 
-              {/* Pay Later Message */}
+              {/* Pay Later Message *​/}
               <div id="paypal-message" className="max-w-md mx-auto mb-6" />
 
-              {/* Error Message */}
+              {/* Error Message *​/}
               {errorMessage && (
                 <div className="max-w-md mx-auto mb-6 flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
                   <FiAlertCircle className="text-xl flex-shrink-0" />
@@ -276,7 +277,7 @@ export default function FinancePage() {
                 </div>
               )}
 
-              {/* Show Payment Button or PayPal Buttons */}
+              {/* Show Payment Button or PayPal Buttons *​/}
               <div className="max-w-md mx-auto">
                 {!buttonsRendered && (
                   <button
@@ -288,7 +289,7 @@ export default function FinancePage() {
                   </button>
                 )}
 
-                {/* PayPal Buttons Container */}
+                {/* PayPal Buttons Container *​/}
                 <div id="paypal-buttons" className={buttonsRendered ? '' : 'hidden'} />
 
                 {buttonsRendered && (
@@ -314,7 +315,7 @@ export default function FinancePage() {
                 )}
               </div>
 
-              {/* Security Note */}
+              {/* Security Note *​/}
               <div className="max-w-md mx-auto mt-8 text-center">
                 <p className="text-xs text-brand-grey">
                   🔒 Payments are processed securely through PayPal. We never see or store your payment details.
@@ -322,7 +323,7 @@ export default function FinancePage() {
               </div>
             </FadeIn>
 
-            {/* Pay Later Info */}
+            {/* Pay Later Info *​/}
             <FadeIn delay={0.3} className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 shadow-lg border border-blue-100">
               <h3 className="text-2xl font-bold text-brand-black mb-4 text-center">Pay Later with PayPal</h3>
               <p className="text-brand-grey text-center mb-6">
@@ -345,7 +346,7 @@ export default function FinancePage() {
               </div>
             </FadeIn>
 
-            {/* Contact & Info */}
+            {/* Contact & Info *​/}
             <FadeIn delay={0.4} className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-brand-black mb-3">Insurance Claims</h3>
@@ -371,7 +372,7 @@ export default function FinancePage() {
               </div>
             </FadeIn>
 
-            {/* CTA */}
+            {/* CTA *​/}
             <FadeIn delay={0.5} className="mt-8 bg-gradient-to-br from-brand-blue to-blue-600 rounded-3xl p-8 md:p-10 text-white text-center">
               <h3 className="text-2xl font-bold mb-4">Questions About Pricing?</h3>
               <p className="text-gray-100 mb-6">
@@ -393,3 +394,5 @@ export default function FinancePage() {
     </div>
   );
 }
+
+*/

@@ -244,13 +244,7 @@ className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-blue to-blue-6
 
       <Footer />
 
-      {/* Floating Financing Banner */}
-      <Link href="/finance" className="fixed left-4 bottom-4 z-50 group">
-        <div className="bg-gradient-to-r from-brand-blue to-blue-600 text-white px-4 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98] flex items-center gap-2 text-sm font-semibold max-w-[220px]">
-          <FiDollarSign className="text-lg flex-shrink-0" />
-          <span>Financing Available Through PayPal For All Services</span>
-        </div>
-      </Link>
+     
     </div>
   );
 };
